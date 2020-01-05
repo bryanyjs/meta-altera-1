@@ -1,9 +1,9 @@
 **This is a forked Version of `kraj/meta-altera`, the official OpenEmbedded/Yocto BSP layer for Altera SoCFPGA platforms.**
 
-**With this layer is the board support package (BSP) for *ARM* based *Intel (ALTERA) SoC-FPGAs* added to the Yocto Project.**
+**With this layer the board support package (BSP) for *ARM* based *Intel (ALTERA) SoC-FPGAs* is added to the Yocto Project.**
 
 Usually the Yocto project can generate all required components (rootfs, device tree, bootloaders,...) to boot up a final embedded Linux. But this is not compatible with [Intel's Boot flow](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/an/an709.pdf).
-This Boot flow uses the Intel Embedded Design Suite (EDS) to build the device tree and all necessary bootloader. 
+This Boot flow uses the Intel Embedded Design Suite (EDS) to build the device tree and all necessary bootloaders. 
 
 For that reason, I forked this BSP-layer and I removed all nonrequired parts.
 This includes the board specific u-boot- and device tree-generation and the support for only the *.tar.gz*-file type for the rootFs. 
@@ -51,9 +51,9 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	````bash 
 	source oe-init-build-env
 	````
-	* Do not run this command or any other Yocto command as root!
-	* Do not use the command: “*sudo ./ oe-init-build-env*”.  With this line would Yocto crash later by the build process without any traceable error message  
-	* A rerun of this script do not over write the development state
+	* Do not run this command or any other Yocto commands as root!
+	* Do not use the command: “*sudo ./ oe-init-build-env*”. With this line Bitbake crashes later during the build process without any traceable error message  
+	* The repeatment of this bitbkake command do not interact the choosen configuration 
 	* The script should response with following and create the folder "/build"
 	++++++
 4. Step: **Add this BSP-layer to your Yocto project solution**
@@ -106,7 +106,7 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 			PREFERRED_PROVIDER_virtual/kernel = "linux-altera-ltsi"
 			````
 	* **Select the Linux Kernel Version**
-	 	* With following code line,it is possible to select the preferred Linux Kernel Version (here with Version 5.3)
+	 	* With following code line,it is possible to select the prefered Linux Kernel Version (here with Version 5.3)
 			````bibtabe
 			PREFERRED_VERSION_linux-altera = "5.3%"
 			````
@@ -131,8 +131,8 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 		````bibtabe
 		bitbake-layers show-layers
 		````
-		* If an error occurred properly something with the "**local.conf**- or "**bblayers.conf"**-file went wrong
-	* This command give the used Linux Kernel Version
+		* If an error occured certainly something with the "**local.conf**- or "**bblayers.conf"**-file went wrong
+	* This command gives the used Linux Kernel Version
 		````bibtabe
 		bitbake --show-versions | grep linux  
 		````
@@ -141,7 +141,7 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	* But for a first Yocto project build is the Linux Kernel configured well enough
 	* Read and change the BSP-layer with **"defcongig"**
 		* One part is configured by a "*defconfig*-file"
-		* With that it is possible to enable or disenable every component, like for example ETHERNET, CAN, EXT2, HPS-Bridges and PCI
+		* With that it is possible to enable or disabled every component, like for example ETHERNET, CAN, EXT2, HPS-Bridges and PCI
 		* The following bitbake shell-command stores the "*defconfig*-file locally (executed inside *poky/build/*)
 		````bash
 		bitbake -c savedefconfig virtual/kernel 
@@ -155,8 +155,8 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 		* A window like this should appear: 
 		+++++++++
 		
-		* Here it is possible to change any kernel setting, ARM-Platform specific settings or enable or disable some peripheral components
-	* To execute the any BSP-layer change use following command:
+		* Here it is possible to change any kernel settings, ARM-Platform specific settings or enable or disable some peripheral components
+	* To execute any BSP-layer-change use following command:
 		````bash
 		bitbake -f -c compile virtual/kernel && bitbake -f -c deploy virtual/kernel
 		````
@@ -165,13 +165,13 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	````bash
 	bitbake core-image-minimal
 	````
-	* This process can take some time
+	* This process can taken some time
 	* For an Intel Arria 10 SoC-FPGA following start print should appear:
 	+++++++++++++++
-	* This shows that bitbake was able to decode the previously shown configuration 
+	* This signaled that bitbake was able to decode the previously shown configuration 
 	
 8. Step: **Locate the final Kernel- and rootFs-File** 
-	* After a successful build the final compressed Linux Kernel file and the rootfs tar.gz- archive this here stored: 
+	* After a successful build the final compressed Linux Kernel file and the rootfs tar.gz- archive is stored here: 
 		* for an **Intel Cyclone V:**
 		````txt
 		poky/build/tmp/delopy/images/cyclone5/
@@ -184,19 +184,19 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	* The Linux Kernel file is called: **zImage-<*...+>.bin**
 	* Be sure that the files are **not a Shortcut**!
 
-At this point a Linux for an Intel SoC-FPGA is generated. Unfortunately to boot this up a also an device tree, a primary- and secondary bootloader and for Intel Arria and Stratix are two FPGA configuration files required.
+At this point a Linux for an Intel SoC-FPGA is generated. Unfortunately to boot this up also an device tree, a primary- and secondary bootloader and for Intel Arria and Stratix two FPGA configuration files must be required.
 # Continuation
-Soon, I will continue my work and upload I guide to show all required steps to my [*rsYocto*-project](https://github.com/robseb/rsyocto).
+Soon, I will continue my work and upload an complet guide to show all required steps to my [*rsYocto*-project](https://github.com/robseb/rsyocto).
 
-For adding a toll to access the FPGA-Manager or to execute shell scripts at boot up you can use my [**meta-rstools**](https://github.com/robseb/meta-rstools)-layer.
-Also a wrote a python script to automatically **pre-install Python pip (PyPI)- Packages within a final Yocto Project Linux Image** (see [here](https://github.com/robseb/PiP2Bitbake)).
+For accessing the FPGA-Manager or to execute shell scripts at boot up you can use my [**meta-rstools**](https://github.com/robseb/meta-rstools)-layer.
+I also wrote a python script to **pre-install Python pip (PyPI)- Packages within a final Yocto Project Linux Image** automatically (see [here](https://github.com/robseb/PiP2Bitbake)).
 
 # Credits & Contribution
-Big thanks to [**Khem Raj**](https://github.com/kraj) for this maintaince work!
+Big thanks to [**Khem Raj**](https://github.com/kraj) for his maintaince work!
 
 # Author
 * **Robin Sebastian**
 
-This guide is my own non official solution, as a part of the is a academic project [*rsYocto*](https://github.com/robseb/rsyocto).
+This guide is my own non official solution, as a part of this academic project: [*rsYocto*](https://github.com/robseb/rsyocto)
 Today I'm a Master Student of electronic engineering with the major embedded systems. 
 I ‘m looking for an interesting job offer to share and deepen my shown skills starting summer 2020.
