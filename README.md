@@ -25,7 +25,7 @@ I used this layer to build [*rsYocto*](https://github.com/robseb/rsyocto), an op
 
 | **Linux Version Name** | **Version Type** | **Supported Linux Kernel Versions** 
 |:--|:--|:--|
-| *"linux-altera"* | **Regular Linux Version** | `5-0`, `5.1`, `5.2`, `5.3`
+| *"linux-altera"* | **Regular Linux Version** | `5.0`, `5.1`, `5.2`, `5.3`
 | *"linux-altera-ltsi"* | **Long term stable Linux Version (LTSI)** | `4.14.130` 
 | *"linux-altera-ltsi-rt"* | **Long term stable Linux Version (LTSI) with real time support** |  `4.14.126`
 
@@ -36,17 +36,21 @@ I used this layer to build [*rsYocto*](https://github.com/robseb/rsyocto), an op
 
 The following step by step guide shows how to use this layer to build a Yocto-based Linux System for an Intel SoC-FPGAs:
 1. Step: **Install the latest Version of the Yocto project**
-	* As a Building machine I prefer regular Ubuntu-Linux
-	````bash
-	 git clone git://git.yoctoproject.org/poky
-	````
+	* As a Building machine I prefer regular *Ubuntu-Linux* running as a *VmWare ESXi* VM
+	* Required components for the Yocto Project with Ubuntu Linux:
+		````bash
+		sudo apt-get install gawk wget git diffstat unzip texinfo gcc-multilib build-essential chrpath socat xterm libsdl2-image-2.0-0 u-boot-tools python-minimal python3 python3-pip python3-pexpect python3-git python3-jinja2 libncurses-dev
+		````
+	* Install the Yocto Project it self with:
+		````bash
+		git clone git://git.yoctoproject.org/poky
+		````
 2. Step: **Download this BSP-layer**
 	````bash
 	cd poky/
 	git clone https://github.com/robseb/meta-altera.git
 	````
-	Your *poky*-folder should now look like this:
-	+++++
+
 3. Step: **Run the bitbake initialization script**
 	````bash 
 	source oe-init-build-env
@@ -54,8 +58,8 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	* Do not run this command or any other Yocto commands as root!
 	* Do not use the command: “*sudo ./ oe-init-build-env*”. With this line Bitbake crashes later during the build process without any traceable error message  
 	* The repeatment of this bitbkake command do not interact the choosen configuration 
-	* The script should response with following and create the folder "/build"
-	++++++
+	* The script should create the folder: "/build"
+
 4. Step: **Add this BSP-layer to your Yocto project solution**
 	* Open the **"bblayers.conf"**-file *(poky/build/conf)* with a text editor, for example with *MS Visual Studio Code*:
 		````bash 
@@ -153,7 +157,7 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 		bitbake -c menuconfig -f virtual/kernel
 		````
 		* A window like this should appear: 
-		+++++++++
+		![Alt text](doc/LinuxKerneMenueConfigl.jpg?raw=true "Linux Kernel menu Config")
 		
 		* Here it is possible to change any kernel settings, ARM-Platform specific settings or enable or disable some peripheral components
 	* To execute any BSP-layer-change use following command:
@@ -167,7 +171,7 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	````
 	* This process can taken some time
 	* For an Intel Arria 10 SoC-FPGA following start print should appear:
-	+++++++++++++++
+	![Alt text](doc/YoctoBuildHeader.jpg?raw=true "Yocto Project startup print")
 	* This signaled that bitbake was able to decode the previously shown configuration 
 	
 8. Step: **Locate the final Kernel- and rootFs-File** 
@@ -183,16 +187,24 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 	* The rootFs-file is called: **core-image-minimal-cyclone5-<*Date Code*>.rootfs.tar.gz**
 	* The Linux Kernel file is called: **zImage-<*...+>.bin**
 	* Be sure that the files are **not a Shortcut**!
+	* In the case of an Intel Cyclone V, these two files are located here:
+	![Alt text](doc/YocotoOutput.jpg?raw=true "Yocto Project output")
+<br>
+
 
 At this point a Linux for an Intel SoC-FPGA is generated. Unfortunately to boot this up also an device tree, a primary- and secondary bootloader and for Intel Arria and Stratix two FPGA configuration files must be required.
+<br>
+
 # Continuation
 Soon, I will continue my work and upload an complet guide to show all required steps to my [*rsYocto*-project](https://github.com/robseb/rsyocto).
 
 For accessing the FPGA-Manager or to execute shell scripts at boot up you can use my [**meta-rstools**](https://github.com/robseb/meta-rstools)-layer.
 I also wrote a python script to **pre-install Python pip (PyPI)- Packages within a final Yocto Project Linux Image** automatically (see [here](https://github.com/robseb/PiP2Bitbake)).
 
+
 # Credits & Contribution
 Big thanks to [**Khem Raj**](https://github.com/kraj) for his maintaince work!
+
 
 # Author
 * **Robin Sebastian**
