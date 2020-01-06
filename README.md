@@ -122,8 +122,8 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 			SDKGCCVERSION = "linaro-5.2"
 			````
 		*Add this two lines to the **"local.conf"**-file independent of your machine choose 
- 	* **Select the used CPU Version** *
-	* For an Dual Core Intel (ALTERA) **Cyclone V**, **Arria 5** or **Arria 10** add the following line to the "**local.conf"**-file:
+ 	* **Select the used CPU Version**
+		* For an Dual Core Intel (ALTERA) **Cyclone V**, **Arria 5** or **Arria 10** add the following line to the "**local.conf"**-file:
 		````bibtabe
 		DEFAULTTUNE = "cortexa9hf-neon"
 		````
