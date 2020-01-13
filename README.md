@@ -196,15 +196,18 @@ At this point a Linux for an Intel SoC-FPGA is generated. Unfortunately to boot 
 <br>
 
 # Continuation
-Soon, I will continue my work and upload an complet guide to show all required steps to my [*rsYocto*-project](https://github.com/robseb/rsyocto).
+
+### How to desgin the requiered bootloaders and the DeviceTree with Intel EDS ?
+Inside my "Mapping HPS Peripherals, like I²C or CAN, over the FPGA fabric to FPGA I/O and using embedded Linux to control them"-guide I show that in details (see [here](https://github.com/robseb/HPS2FPGAmapping)).
+<br>
 
 For accessing the FPGA-Manager or to execute shell scripts at boot up you can use my [**meta-rstools**](https://github.com/robseb/meta-rstools)-layer.
 I also wrote a python script to **pre-install Python pip (PyPI)- Packages within a final Yocto Project Linux Image** automatically (see [here](https://github.com/robseb/PiP2Bitbake)).
-
+<br>
 
 # Credits & Contribution
 Big thanks to [**Khem Raj**](https://github.com/kraj) for his maintaince work!
-
+<br>
 
 # Author
 * **Robin Sebastian**
