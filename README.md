@@ -32,7 +32,7 @@ I used this layer to build [*rsYocto*](https://github.com/robseb/rsyocto), an op
 **The Linux Kernel source code is available on this official [Intel (ALTERA) repository](https://github.com/altera-opensource/linux-socfpga)**. 
 
 
-## Usage of this BSP-layer
+## Usage of this BSP-layer and getting started with the Yocto Project
 
 The following step by step guide shows how to use this layer to build a Yocto-based Linux System for an Intel SoC-FPGAs:
 1. Step: **Install the latest Version of the Yocto project**
