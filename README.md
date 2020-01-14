@@ -25,7 +25,7 @@ I used this layer to build [*rsYocto*](https://github.com/robseb/rsyocto), an op
 
 | **Linux Version Name** | **Version Type** | **Supported Linux Kernel Versions** 
 |:--|:--|:--|
-| *"linux-altera"* | **Regular Linux Version** | `5.0`, `5.1`, `5.2`, `5.3`
+| *"linux-altera"* | **Regular Linux Version** | `5.0`, `5.1`, `5.2`, `5.3`, `5.4`
 | *"linux-altera-ltsi"* | **Long term stable Linux Version (LTSI)** | `4.14.130` 
 | *"linux-altera-ltsi-rt"* | **Long term stable Linux Version (LTSI) with real time support** |  `4.14.126`
 
