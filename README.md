@@ -160,7 +160,7 @@ The following step by step guide shows how to use this layer to build a Yocto-ba
 		![Alt text](doc/LinuxKerneMenueConfigl.jpg?raw=true "Linux Kernel menu Config")
 		
 		* Here it is possible to change any kernel settings, ARM-Platform specific settings or enable or disable some peripheral components
-	* To execute any BSP-layer-change use following command:
+	* To execute any BSP-layer change use following command:
 		````bash
 		bitbake -f -c compile virtual/kernel && bitbake -f -c deploy virtual/kernel
 		````
