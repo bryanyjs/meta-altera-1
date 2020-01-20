@@ -215,3 +215,7 @@ Big thanks to [**Khem Raj**](https://github.com/kraj) for his maintaince work!
 This guide is my own non official solution, as a part of this academic project: [*rsYocto*](https://github.com/robseb/rsyocto)
 Today I'm a Master Student of electronic engineering with the major embedded systems. 
 I ‘m looking for an interesting job offer to share and deepen my shown skills starting summer 2020.
+
+
+ 
+[![Join the chat at https://gitter.im/rsyocto/community#](https://badges.gitter.im/rsyocto/BlockPets.svg)](https://gitter.im/rsyocto/community#)
